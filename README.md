@@ -10,8 +10,8 @@ Travelers who buy tickets at the station often arrive to find the bus full, with
 3. **Objective**                                                                                                                                                            
 Develop a web-based system that lets travelers book bus seats online and lets bus companies manage trips from one admin panel.                                             
 Specific objectives:                                                                                                                                                       
-1.  Let passengers search trips by origin, destination and date, with live seat availability.                                                                                 
-2.  Let passengers choose seats on a seat map and book online.                                                                                                            
-3.  Issue an e-ticket with a unique booking code that can be downloaded or shown on a phone.                                                                               
-4.  Give admins an admin panel to manage routes, buses and schedules and to view bookings and sales reports.                                                               
-5.  Prevent the same seat from being booked twice for the same trip.
+.  Let passengers search trips by origin, destination and date, with live seat availability.                                                                                 
+.  Let passengers choose seats on a seat map and book online.                                                                                                            
+.  Issue an e-ticket with a unique booking code that can be downloaded or shown on a phone.                                                                               
+.  Give admins an admin panel to manage routes, buses and schedules and to view bookings and sales reports.                                                               
+.  Prevent the same seat from being booked twice for the same trip.
