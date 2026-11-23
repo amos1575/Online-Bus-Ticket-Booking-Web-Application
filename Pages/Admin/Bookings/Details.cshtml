@@ -1,0 +1,53 @@
+@page "{id:int}"
+@model Online_Bus_Ticket_Booking_Web_Application.Pages.Admin.Bookings.DetailsModel
+@{
+    ViewData["Title"] = "Booking Details";
+}
+
+<h1>Booking BK-@Model.Booking.BookingId.ToString("D6")</h1>
+
+<dl class="row" style="max-width: 36rem;">
+    <dt class="col-sm-4">Passenger</dt>
+    <dd class="col-sm-8">@Model.Booking.User.FullName (@Model.Booking.User.Email)</dd>
+
+    <dt class="col-sm-4">Route</dt>
+    <dd class="col-sm-8">@Model.Booking.Schedule.Route.Origin &rarr; @Model.Booking.Schedule.Route.Destination</dd>
+
+    <dt class="col-sm-4">Departure</dt>
+    <dd class="col-sm-8">@Model.Booking.Schedule.DepartureTime.ToString("ddd, dd MMM yyyy HH:mm")</dd>
+
+    <dt class="col-sm-4">Status</dt>
+    <dd class="col-sm-8">@Model.Booking.Status</dd>
+
+    <dt class="col-sm-4">Total</dt>
+    <dd class="col-sm-8">@Model.Booking.TotalAmount.ToString("C")</dd>
+</dl>
+
+<h5>Tickets</h5>
+<table class="table">
+    <thead><tr><th>Passenger</th><th>Seat</th><th>Code</th></tr></thead>
+    <tbody>
+        @foreach (var ticket in Model.Booking.Tickets)
+        {
+            <tr><td>@ticket.PassengerName</td><td>@ticket.Seat.SeatNumber</td><td>@ticket.TicketCode</td></tr>
+        }
+    </tbody>
+</table>
+
+<h5>Payment attempts</h5>
+<table class="table">
+    <thead><tr><th>Amount</th><th>Method</th><th>Status</th><th>Paid at</th></tr></thead>
+    <tbody>
+        @foreach (var payment in Model.Booking.Payments)
+        {
+            <tr>
+                <td>@payment.Amount.ToString("C")</td>
+                <td>@payment.Method</td>
+                <td>@payment.Status</td>
+                <td>@(payment.PaidAt?.ToString("ddd, dd MMM yyyy HH:mm") ?? "-")</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a class="btn btn-outline-secondary" asp-page="/Admin/Bookings/Index">Back</a>

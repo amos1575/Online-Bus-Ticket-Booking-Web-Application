@@ -1,0 +1,41 @@
+@page "{bookingId:int}"
+@model Online_Bus_Ticket_Booking_Web_Application.Pages.Booking.ConfirmationModel
+@{
+    ViewData["Title"] = "Booking Confirmed";
+}
+
+<div class="alert alert-success">
+    <h1 class="h3">Booking confirmed!</h1>
+    <p class="mb-0">Booking code: <strong>BK-@Model.Booking.BookingId.ToString("D6")</strong></p>
+</div>
+
+<div class="card" style="max-width: 36rem;">
+    <div class="card-body">
+        <h5 class="card-title">@Model.Booking.Schedule.Route.Origin &rarr; @Model.Booking.Schedule.Route.Destination</h5>
+        <p class="card-text text-muted">
+            @Model.Booking.Schedule.DepartureTime.ToString("ddd, dd MMM yyyy HH:mm")
+        </p>
+
+        <table class="table">
+            <thead>
+                <tr><th>Passenger</th><th>Seat</th><th>Ticket code</th></tr>
+            </thead>
+            <tbody>
+                @foreach (var ticket in Model.Booking.Tickets)
+                {
+                    <tr>
+                        <td>@ticket.PassengerName</td>
+                        <td>@ticket.Seat.SeatNumber</td>
+                        <td>@ticket.TicketCode</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <p><strong>Total paid: @Model.Booking.TotalAmount.ToString("C")</strong></p>
+    </div>
+    <div class="card-footer d-flex gap-2">
+        <a class="btn btn-primary" asp-page="/Booking/TicketDownload" asp-route-bookingId="@Model.Booking.BookingId">Download PDF ticket</a>
+        <a class="btn btn-outline-secondary" asp-page="/Booking/History">My Bookings</a>
+    </div>
+</div>

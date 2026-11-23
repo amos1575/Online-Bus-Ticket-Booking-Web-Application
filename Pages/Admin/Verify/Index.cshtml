@@ -1,0 +1,41 @@
+@page
+@model Online_Bus_Ticket_Booking_Web_Application.Pages.Admin.Verify.IndexModel
+@{
+    ViewData["Title"] = "Verify Ticket";
+}
+
+<h1>Verify a ticket</h1>
+
+<form method="post" class="row g-2 mb-4" style="max-width: 32rem;">
+    <div class="col-8">
+        <input class="form-control" asp-for="Code" placeholder="Enter ticket code, e.g. BK-20261124-AB12C3" />
+    </div>
+    <div class="col-4">
+        <button type="submit" class="btn btn-primary w-100">Verify</button>
+    </div>
+</form>
+
+@if (Model.Searched)
+{
+    @if (Model.Ticket is null)
+    {
+        <div class="alert alert-danger">No ticket found with that code.</div>
+    }
+    else
+    {
+        var isValid = Model.Ticket.Booking.Status == BookingStatus.Confirmed;
+        <div class="alert @(isValid ? "alert-success" : "alert-danger")">
+            <h5>@(isValid ? "Valid for boarding" : $"Not valid ({Model.Ticket.Booking.Status})")</h5>
+            <dl class="row mb-0">
+                <dt class="col-sm-3">Passenger</dt>
+                <dd class="col-sm-9">@Model.Ticket.PassengerName</dd>
+                <dt class="col-sm-3">Route</dt>
+                <dd class="col-sm-9">@Model.Ticket.Schedule.Route.Origin &rarr; @Model.Ticket.Schedule.Route.Destination</dd>
+                <dt class="col-sm-3">Departure</dt>
+                <dd class="col-sm-9">@Model.Ticket.Schedule.DepartureTime.ToString("ddd, dd MMM yyyy HH:mm")</dd>
+                <dt class="col-sm-3">Seat</dt>
+                <dd class="col-sm-9">@Model.Ticket.Seat.SeatNumber</dd>
+            </dl>
+        </div>
+    }
+}

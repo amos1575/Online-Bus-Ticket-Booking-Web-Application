@@ -1,0 +1,13 @@
+@page "{id:int}"
+@model Online_Bus_Ticket_Booking_Web_Application.Pages.Admin.Buses.DeleteModel
+@{
+    ViewData["Title"] = "Delete Bus";
+}
+
+<h1>Delete bus</h1>
+<p>Are you sure you want to delete <strong>@Model.Bus.PlateNumber (@Model.Bus.Model)</strong>? Its @Model.Bus.TotalSeats seats will also be removed.</p>
+
+<form method="post">
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a class="btn btn-outline-secondary" asp-page="/Admin/Buses/Index">Cancel</a>
+</form>

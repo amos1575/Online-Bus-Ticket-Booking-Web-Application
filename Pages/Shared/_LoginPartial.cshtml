@@ -1,0 +1,41 @@
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+<ul class="navbar-nav">
+@if (SignInManager.IsSignedIn(User))
+{
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-page="/Trips/Search">Search Trips</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-page="/Booking/History">My Bookings</a>
+    </li>
+    @if (User.IsInRole("Admin"))
+    {
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-page="/Admin/Index">Admin</a>
+        </li>
+    }
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-page="/Account/Profile">Hello, @User.Identity!.Name</a>
+    </li>
+    <li class="nav-item">
+        <form class="form-inline" method="post" asp-page="/Account/Logout">
+            <button type="submit" class="nav-link btn btn-link text-dark">Logout</button>
+        </form>
+    </li>
+}
+else
+{
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-page="/Trips/Search">Search Trips</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-page="/Account/Register">Register</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-page="/Account/Login">Login</a>
+    </li>
+}
+</ul>

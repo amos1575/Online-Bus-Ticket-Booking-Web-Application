@@ -1,0 +1,26 @@
+@page
+@model Online_Bus_Ticket_Booking_Web_Application.Pages.Admin.Routes.IndexModel
+@{
+    ViewData["Title"] = "Manage Routes";
+}
+
+<h1>Routes</h1>
+<a class="btn btn-primary mb-3" asp-page="/Admin/Routes/Create">Add route</a>
+
+<table class="table">
+    <thead><tr><th>Origin</th><th>Destination</th><th>Distance (km)</th><th></th></tr></thead>
+    <tbody>
+        @foreach (var route in Model.Routes)
+        {
+            <tr>
+                <td>@route.Origin</td>
+                <td>@route.Destination</td>
+                <td>@route.DistanceKm</td>
+                <td>
+                    <a class="btn btn-sm btn-outline-secondary" asp-page="/Admin/Routes/Edit" asp-route-id="@route.RouteId">Edit</a>
+                    <a class="btn btn-sm btn-outline-danger" asp-page="/Admin/Routes/Delete" asp-route-id="@route.RouteId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

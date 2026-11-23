@@ -1,0 +1,31 @@
+@page
+@model Online_Bus_Ticket_Booking_Web_Application.Pages.Admin.Routes.CreateModel
+@{
+    ViewData["Title"] = "Add Route";
+}
+
+<h1>Add route</h1>
+
+<form method="post" class="row g-3" style="max-width: 32rem;">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="col-12">
+        <label class="form-label" asp-for="Input.Origin"></label>
+        <input class="form-control" asp-for="Input.Origin" />
+    </div>
+    <div class="col-12">
+        <label class="form-label" asp-for="Input.Destination"></label>
+        <input class="form-control" asp-for="Input.Destination" />
+    </div>
+    <div class="col-12">
+        <label class="form-label" asp-for="Input.DistanceKm"></label>
+        <input class="form-control" asp-for="Input.DistanceKm" type="number" step="0.1" />
+    </div>
+    <div class="col-12">
+        <button type="submit" class="btn btn-primary">Save</button>
+        <a class="btn btn-outline-secondary" asp-page="/Admin/Routes/Index">Cancel</a>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

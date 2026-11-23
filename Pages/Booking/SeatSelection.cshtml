@@ -1,0 +1,54 @@
+@page "{scheduleId:int}"
+@model Online_Bus_Ticket_Booking_Web_Application.Pages.Booking.SeatSelectionModel
+@{
+    ViewData["Title"] = "Select Seats";
+}
+
+<h1>@Model.SeatMap.Origin &rarr; @Model.SeatMap.Destination</h1>
+<p class="text-muted">
+    @Model.SeatMap.DepartureTime.ToString("ddd, dd MMM yyyy HH:mm") &middot; @Model.SeatMap.Price.ToString("C") per seat
+</p>
+
+@if (Model.ErrorMessage is not null)
+{
+    <div class="alert alert-danger">@Model.ErrorMessage</div>
+}
+
+<div class="mb-3">
+    <span class="badge bg-light text-dark border me-2">&#9633; Available</span>
+    <span class="badge bg-primary me-2">&#9632; Selected</span>
+    <span class="badge bg-secondary me-2">&#9632; Held by someone else</span>
+    <span class="badge bg-dark">&#9632; Sold</span>
+</div>
+
+<form method="post">
+    <input type="hidden" name="scheduleId" value="@Model.SeatMap.ScheduleId" />
+    <div class="d-flex flex-wrap gap-2 mb-4" style="max-width: 40rem;">
+        @foreach (var seat in Model.SeatMap.Seats)
+        {
+            var isSelectable = seat.Status == SeatStatus.Available || seat.Status == SeatStatus.SelectedByMe;
+            var btnClass = seat.Status switch
+            {
+                SeatStatus.Sold => "btn-dark",
+                SeatStatus.HeldByOthers => "btn-secondary",
+                SeatStatus.SelectedByMe => "btn-primary seat-checkbox-label",
+                _ => "btn-outline-dark seat-checkbox-label"
+            };
+
+            <div class="form-check form-check-inline m-0">
+                @if (isSelectable)
+                {
+                    <input type="checkbox" class="btn-check" name="selectedSeatIds" value="@seat.SeatId" id="seat-@seat.SeatId"
+                           autocomplete="off" checked="@(seat.Status == SeatStatus.SelectedByMe)" />
+                    <label class="btn @btnClass" style="width: 3.5rem;" for="seat-@seat.SeatId">@seat.SeatNumber</label>
+                }
+                else
+                {
+                    <button type="button" class="btn @btnClass" style="width: 3.5rem;" disabled>@seat.SeatNumber</button>
+                }
+            </div>
+        }
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-lg">Continue</button>
+</form>

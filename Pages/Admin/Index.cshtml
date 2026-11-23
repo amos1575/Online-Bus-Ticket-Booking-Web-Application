@@ -1,0 +1,31 @@
+@page
+@model Online_Bus_Ticket_Booking_Web_Application.Pages.Admin.IndexModel
+@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<h1>Admin dashboard</h1>
+
+<div class="row g-3 mb-4">
+    <div class="col-md-3">
+        <div class="card text-center"><div class="card-body"><h2>@Model.RouteCount</h2><p class="text-muted mb-0">Routes</p></div></div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-center"><div class="card-body"><h2>@Model.BusCount</h2><p class="text-muted mb-0">Buses</p></div></div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-center"><div class="card-body"><h2>@Model.ScheduleCount</h2><p class="text-muted mb-0">Schedules</p></div></div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-center"><div class="card-body"><h2>@Model.BookingsToday</h2><p class="text-muted mb-0">Bookings today</p></div></div>
+    </div>
+</div>
+
+<div class="list-group" style="max-width: 24rem;">
+    <a class="list-group-item list-group-item-action" asp-page="/Admin/Routes/Index">Manage Routes</a>
+    <a class="list-group-item list-group-item-action" asp-page="/Admin/Buses/Index">Manage Buses</a>
+    <a class="list-group-item list-group-item-action" asp-page="/Admin/Schedules/Index">Manage Schedules</a>
+    <a class="list-group-item list-group-item-action" asp-page="/Admin/Bookings/Index">View Bookings</a>
+    <a class="list-group-item list-group-item-action" asp-page="/Admin/Reports/Index">Reports</a>
+    <a class="list-group-item list-group-item-action" asp-page="/Admin/Verify/Index">Verify a Ticket</a>
+</div>

@@ -1,0 +1,65 @@
+@page
+@model Online_Bus_Ticket_Booking_Web_Application.Pages.Booking.HistoryModel
+@{
+    ViewData["Title"] = "My Bookings";
+}
+
+<h1>My bookings</h1>
+
+@if (Model.Bookings.Count == 0)
+{
+    <div class="alert alert-info">You haven't made any bookings yet. <a asp-page="/Trips/Search">Search for a trip</a>.</div>
+}
+else
+{
+    <div class="table-responsive">
+        <table class="table align-middle">
+            <thead>
+                <tr>
+                    <th>Booking</th>
+                    <th>Route</th>
+                    <th>Departure</th>
+                    <th>Seats</th>
+                    <th>Total</th>
+                    <th>Status</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var booking in Model.Bookings)
+                {
+                    var canCancel = booking.Status is BookingStatus.Confirmed or BookingStatus.Pending
+                                     && booking.Schedule.DepartureTime > DateTime.UtcNow;
+                    <tr>
+                        <td>BK-@booking.BookingId.ToString("D6")</td>
+                        <td>@booking.Schedule.Route.Origin &rarr; @booking.Schedule.Route.Destination</td>
+                        <td>@booking.Schedule.DepartureTime.ToString("ddd, dd MMM yyyy HH:mm")</td>
+                        <td>@string.Join(", ", booking.Tickets.Select(t => t.Seat.SeatNumber))</td>
+                        <td>@booking.TotalAmount.ToString("C")</td>
+                        <td>
+                            <span class="badge bg-@(booking.Status switch {
+                                BookingStatus.Confirmed => "success",
+                                BookingStatus.Pending => "warning",
+                                BookingStatus.Cancelled => "secondary",
+                                _ => "dark"
+                            })">@booking.Status</span>
+                        </td>
+                        <td>
+                            @if (booking.Status == BookingStatus.Confirmed)
+                            {
+                                <a class="btn btn-sm btn-outline-primary" asp-page="/Booking/TicketDownload" asp-route-bookingId="@booking.BookingId">PDF</a>
+                            }
+                            @if (canCancel)
+                            {
+                                <form method="post" asp-page-handler="Cancel" class="d-inline" onsubmit="return confirm('Cancel this booking?');">
+                                    <input type="hidden" name="bookingId" value="@booking.BookingId" />
+                                    <button type="submit" class="btn btn-sm btn-outline-danger">Cancel</button>
+                                </form>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}

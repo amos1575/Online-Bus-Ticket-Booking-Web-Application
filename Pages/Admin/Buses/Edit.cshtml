@@ -1,0 +1,33 @@
+@page "{id:int}"
+@model Online_Bus_Ticket_Booking_Web_Application.Pages.Admin.Buses.EditModel
+@{
+    ViewData["Title"] = "Edit Bus";
+}
+
+<h1>Edit bus</h1>
+
+<form method="post" class="row g-3" style="max-width: 32rem;">
+    <input type="hidden" asp-for="Input.BusId" />
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="col-12">
+        <label class="form-label" asp-for="Input.PlateNumber"></label>
+        <input class="form-control" asp-for="Input.PlateNumber" />
+    </div>
+    <div class="col-12">
+        <label class="form-label" asp-for="Input.Model"></label>
+        <input class="form-control" asp-for="Input.Model" />
+    </div>
+    <div class="col-12">
+        <label class="form-label" asp-for="Input.TotalSeats"></label>
+        <input class="form-control" asp-for="Input.TotalSeats" type="number" />
+        <div class="form-text">Increasing adds seats automatically; decreasing is blocked if those seats already have tickets sold.</div>
+    </div>
+    <div class="col-12">
+        <button type="submit" class="btn btn-primary">Save</button>
+        <a class="btn btn-outline-secondary" asp-page="/Admin/Buses/Index">Cancel</a>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

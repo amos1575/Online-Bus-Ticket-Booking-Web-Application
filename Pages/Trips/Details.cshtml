@@ -1,0 +1,38 @@
+@page "{scheduleId:int}"
+@model Online_Bus_Ticket_Booking_Web_Application.Pages.Trips.DetailsModel
+@{
+    ViewData["Title"] = "Trip Details";
+}
+
+<h1>@Model.Origin &rarr; @Model.Destination</h1>
+
+<div class="card" style="max-width: 32rem;">
+    <div class="card-body">
+        <dl class="row mb-0">
+            <dt class="col-sm-4">Departure</dt>
+            <dd class="col-sm-8">@Model.DepartureTime.ToString("ddd, dd MMM yyyy HH:mm")</dd>
+
+            <dt class="col-sm-4">Arrival</dt>
+            <dd class="col-sm-8">@Model.ArrivalTime.ToString("ddd, dd MMM yyyy HH:mm")</dd>
+
+            <dt class="col-sm-4">Bus</dt>
+            <dd class="col-sm-8">@Model.BusModel (@Model.PlateNumber)</dd>
+
+            <dt class="col-sm-4">Price per seat</dt>
+            <dd class="col-sm-8">@Model.Price.ToString("C")</dd>
+
+            <dt class="col-sm-4">Free seats</dt>
+            <dd class="col-sm-8">@Model.FreeSeats / @Model.TotalSeats</dd>
+        </dl>
+    </div>
+    <div class="card-footer">
+        @if (Model.FreeSeats <= 0)
+        {
+            <span class="badge bg-danger">Fully booked</span>
+        }
+        else
+        {
+            <a class="btn btn-primary" asp-page="/Booking/SeatSelection" asp-route-scheduleId="@Model.ScheduleId">Select Seats</a>
+        }
+    </div>
+</div>

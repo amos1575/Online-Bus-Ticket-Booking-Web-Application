@@ -1,0 +1,17 @@
+@page "{id:int}"
+@model Online_Bus_Ticket_Booking_Web_Application.Pages.Admin.Schedules.DeleteModel
+@{
+    ViewData["Title"] = "Delete Schedule";
+}
+
+<h1>Delete schedule</h1>
+<p>
+    Are you sure you want to delete the schedule for
+    <strong>@Model.Schedule.Route.Origin &rarr; @Model.Schedule.Route.Destination</strong>
+    on @Model.Schedule.DepartureTime.ToString("ddd, dd MMM yyyy HH:mm")?
+</p>
+
+<form method="post">
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a class="btn btn-outline-secondary" asp-page="/Admin/Schedules/Index">Cancel</a>
+</form>

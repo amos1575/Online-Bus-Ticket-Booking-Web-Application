@@ -1,0 +1,43 @@
+@page
+@model Online_Bus_Ticket_Booking_Web_Application.Pages.Admin.Schedules.CreateModel
+@{
+    ViewData["Title"] = "Add Schedule";
+}
+
+<h1>Add schedule</h1>
+
+<form method="post" class="row g-3" style="max-width: 32rem;">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="col-12">
+        <label class="form-label">Route</label>
+        <select class="form-select" asp-for="Input.RouteId" asp-items="Model.RouteOptions">
+            <option value="">-- select --</option>
+        </select>
+    </div>
+    <div class="col-12">
+        <label class="form-label">Bus</label>
+        <select class="form-select" asp-for="Input.BusId" asp-items="Model.BusOptions">
+            <option value="">-- select --</option>
+        </select>
+    </div>
+    <div class="col-6">
+        <label class="form-label" asp-for="Input.DepartureTime"></label>
+        <input class="form-control" asp-for="Input.DepartureTime" type="datetime-local" />
+    </div>
+    <div class="col-6">
+        <label class="form-label" asp-for="Input.ArrivalTime"></label>
+        <input class="form-control" asp-for="Input.ArrivalTime" type="datetime-local" />
+    </div>
+    <div class="col-12">
+        <label class="form-label" asp-for="Input.Price"></label>
+        <input class="form-control" asp-for="Input.Price" type="number" step="0.01" />
+    </div>
+    <div class="col-12">
+        <button type="submit" class="btn btn-primary">Save</button>
+        <a class="btn btn-outline-secondary" asp-page="/Admin/Schedules/Index">Cancel</a>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

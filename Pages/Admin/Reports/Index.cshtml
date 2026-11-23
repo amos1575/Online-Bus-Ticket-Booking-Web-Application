@@ -1,0 +1,32 @@
+@page
+@model Online_Bus_Ticket_Booking_Web_Application.Pages.Admin.Reports.IndexModel
+@{
+    ViewData["Title"] = "Reports";
+}
+
+<h1>Reports</h1>
+
+<div class="row g-3 mb-4">
+    <div class="col-md-3">
+        <div class="card text-center"><div class="card-body"><h2>@Model.TotalTicketsSold</h2><p class="text-muted mb-0">Tickets sold</p></div></div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-center"><div class="card-body"><h2>@Model.TotalRevenue.ToString("C")</h2><p class="text-muted mb-0">Total revenue</p></div></div>
+    </div>
+</div>
+
+<table class="table">
+    <thead><tr><th>Route</th><th>Departure</th><th>Tickets sold</th><th>Revenue</th><th>Occupancy</th></tr></thead>
+    <tbody>
+        @foreach (var row in Model.Rows)
+        {
+            <tr>
+                <td>@row.Route</td>
+                <td>@row.DepartureTime.ToString("ddd, dd MMM yyyy HH:mm")</td>
+                <td>@row.TicketsSold / @row.TotalSeats</td>
+                <td>@row.Revenue.ToString("C")</td>
+                <td>@row.OccupancyPercent.ToString("0.0")%</td>
+            </tr>
+        }
+    </tbody>
+</table>

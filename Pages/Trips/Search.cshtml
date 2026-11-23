@@ -1,0 +1,74 @@
+@page
+@model Online_Bus_Ticket_Booking_Web_Application.Pages.Trips.SearchModel
+@{
+    ViewData["Title"] = "Search Trips";
+}
+
+<h1>Search trips</h1>
+
+<form method="get" class="row g-3 align-items-end mb-4">
+    <div class="col-md-3">
+        <label class="form-label">Origin</label>
+        <input class="form-control" asp-for="Origin" placeholder="e.g. Kampala" />
+    </div>
+    <div class="col-md-3">
+        <label class="form-label">Destination</label>
+        <input class="form-control" asp-for="Destination" placeholder="e.g. Mbarara" />
+    </div>
+    <div class="col-md-3">
+        <label class="form-label">Travel date</label>
+        <input class="form-control" type="date" asp-for="Date" />
+    </div>
+    <div class="col-md-3">
+        <button type="submit" class="btn btn-primary w-100">Search</button>
+    </div>
+</form>
+
+@if (Model.HasSearched && Model.Results.Count == 0)
+{
+    <div class="alert alert-info">No trips found for your search.</div>
+}
+
+@if (Model.Results.Count > 0)
+{
+    <div class="table-responsive">
+        <table class="table table-hover align-middle">
+            <thead>
+                <tr>
+                    <th>Route</th>
+                    <th>Departure</th>
+                    <th>Arrival</th>
+                    <th>Bus</th>
+                    <th>Price</th>
+                    <th>Free seats</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var trip in Model.Results)
+                {
+                    <tr>
+                        <td>@trip.Origin &rarr; @trip.Destination</td>
+                        <td>@trip.DepartureTime.ToString("ddd, dd MMM yyyy HH:mm")</td>
+                        <td>@trip.ArrivalTime.ToString("HH:mm")</td>
+                        <td>@trip.BusModel (@trip.PlateNumber)</td>
+                        <td>@trip.Price.ToString("C")</td>
+                        <td>
+                            @if (trip.FreeSeats <= 0)
+                            {
+                                <span class="badge bg-danger">Full</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-success">@trip.FreeSeats / @trip.TotalSeats</span>
+                            }
+                        </td>
+                        <td>
+                            <a class="btn btn-sm btn-outline-primary" asp-page="/Trips/Details" asp-route-scheduleId="@trip.ScheduleId">View</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}

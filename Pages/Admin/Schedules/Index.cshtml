@@ -1,0 +1,28 @@
+@page
+@model Online_Bus_Ticket_Booking_Web_Application.Pages.Admin.Schedules.IndexModel
+@{
+    ViewData["Title"] = "Manage Schedules";
+}
+
+<h1>Schedules</h1>
+<a class="btn btn-primary mb-3" asp-page="/Admin/Schedules/Create">Add schedule</a>
+
+<table class="table">
+    <thead><tr><th>Route</th><th>Bus</th><th>Departure</th><th>Arrival</th><th>Price</th><th></th></tr></thead>
+    <tbody>
+        @foreach (var schedule in Model.Schedules)
+        {
+            <tr>
+                <td>@schedule.Route.Origin &rarr; @schedule.Route.Destination</td>
+                <td>@schedule.Bus.Model (@schedule.Bus.PlateNumber)</td>
+                <td>@schedule.DepartureTime.ToString("ddd, dd MMM yyyy HH:mm")</td>
+                <td>@schedule.ArrivalTime.ToString("HH:mm")</td>
+                <td>@schedule.Price.ToString("C")</td>
+                <td>
+                    <a class="btn btn-sm btn-outline-secondary" asp-page="/Admin/Schedules/Edit" asp-route-id="@schedule.ScheduleId">Edit</a>
+                    <a class="btn btn-sm btn-outline-danger" asp-page="/Admin/Schedules/Delete" asp-route-id="@schedule.ScheduleId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
