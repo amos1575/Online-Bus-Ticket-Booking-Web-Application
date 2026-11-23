@@ -31,7 +31,6 @@ The system will focus on online ticket booking, seat selection, trip management,
 
 ## 6. User Roles
 - **Passenger**
-- **Operator** 
 - **Admin** 
 
 ## 7. Technologies Used
