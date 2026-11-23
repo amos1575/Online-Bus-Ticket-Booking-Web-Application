@@ -1,13 +1,13 @@
-1.*Project name*
-*Online Bus Ticket Booking System* is a web application where passengers search trips, pick seats and get an e-ticket, and bus company admins manage routes, buses and schedules.
+1.**Project name**                                                                                                                                                           
+**Online Bus Ticket Booking System** is a web application where passengers search trips, pick seats and get an e-ticket, and bus company admins manage routes, buses and schedules.
 
-2. *Problem statement*
+2. **Problem statement**  
 Travelers who buy tickets at the station often arrive to find the bus full, with no way to check seats beforehand.
 • Wasted trips: passengers cannot see seat availability before leaving home.
 • No seat choice: seats are assigned at the counter, so passengers cannot choose or preview them.
 • Queues and paper tickets: peak hours mean long lines, and paper tickets can be lost or sold twice.
-• Manual operations: companies track routes, schedules and sales by hand, which makes reports slow and error-prone.
-3. *Objective*
+• Manual operations: companies track routes, schedules and sales by hand, which makes reports slow and error-prone.                                                         
+3. **Objective**
 Develop a web-based system that lets travelers book bus seats online and lets bus companies manage trips from one admin panel.
 Specific objectives:
 1.  Let passengers search trips by origin, destination and date, with live seat availability.
