@@ -1,4 +1,4 @@
-1.**Project name**                                                                                                                                                           
+1. #Project name                                                                                                                                                           
 **Online Bus Ticket Booking System** is a web application where passengers search trips, pick seats and get an e-ticket, and bus company admins manage routes, buses and schedules.
 
 2. **Problem statement**  
