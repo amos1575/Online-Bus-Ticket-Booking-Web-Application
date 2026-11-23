@@ -37,6 +37,6 @@ The system will focus on online ticket booking, seat selection, trip management,
 ## 7. Technologies Used
 - ASP.NET Core Razor Pages (.NET 10).
 - Entity Framework Core.
-- ASP.NET Core Identity
+- ASP.NET Core Identity.
 - SQL Server (managed with SSMS).
 - Visual Studio, Git and GitHub.
