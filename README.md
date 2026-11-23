@@ -15,3 +15,16 @@ Specific objectives:
 .  Issue an e-ticket with a unique booking code that can be downloaded or shown on a phone.                                                                               
 .  Give admins an admin panel to manage routes, buses and schedules and to view bookings and sales reports.                                                               
 .  Prevent the same seat from being booked twice for the same trip.
+
+## 4. Scope of the Project
+
+The system will focus on online ticket booking, seat selection, trip management, and ticket generation. It will provide passengers and administrators with a simple platform to manage bus transportation services efficiently.
+
+## 5. Expected Benefits
+. Saves passengers time by reducing queues.
+
+. Makes seat availability easy to check.
+
+. Reduces double booking.
+
+. Improves bus company record management.
