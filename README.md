@@ -28,3 +28,15 @@ The system will focus on online ticket booking, seat selection, trip management,
 . Reduces double booking.
 
 . Improves bus company record management.
+
+## 6. User Roles
+- **Passenger:** [what a passenger can do]
+- **Operator:** [what bus company staff can do]
+- **Admin:** [what the system admin can do]
+
+## 7. Technologies Used
+- ASP.NET Core Razor Pages (.NET 10)
+- Entity Framework Core
+- ASP.NET Core Identity
+- SSMS
+- Visual Studio, Git and GitHub
