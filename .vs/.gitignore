@@ -1,0 +1,15 @@
+
+# Visual Studio
+.vs/
+*.suo
+*.user
+
+# Build output
+bin/
+obj/
+
+# Visual Studio generated files
+*.cache
+
+# User-specific files
+*.csproj.user
